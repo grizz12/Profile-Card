@@ -1,71 +1,33 @@
-import { useCallback, useEffect, useState } from 'react'
-import Button from '../components/Button'
-import ClickCount from '../components/ClickCount'
-import styles from '../styles/home.module.css'
-
-function throwError() {
-  console.log(
-    // The function body() is not defined
-    document.body()
-  )
-}
+import Button from "../components/Button";
+import Card from "../components/Card";
 
 function Home() {
-  const [count, setCount] = useState(0)
-  const increment = useCallback(() => {
-    setCount((v) => v + 1)
-  }, [setCount])
-
-  useEffect(() => {
-    const r = setInterval(() => {
-      increment()
-    }, 1000)
-
-    return () => {
-      clearInterval(r)
-    }
-  }, [increment])
+  const image =
+    "https://www.teknikalraman.com/wp-content/uploads/2022/07/Gambar-anime-wanita-keren-11.webp?ezimgfmt=rs:272x380/rscb1/ngcb1/notWebP";
 
   return (
-    <main className={styles.main}>
-      <h1>Fast Refresh Demo</h1>
-      <p>
-        Fast Refresh is a Next.js feature that gives you instantaneous feedback
-        on edits made to your React components, without ever losing component
-        state.
-      </p>
-      <hr className={styles.hr} />
-      <div>
-        <p>
-          Auto incrementing value. The counter won't reset after edits or if
-          there are errors.
-        </p>
-        <p>Current value: {count}</p>
+    <Card>
+      <div className="flex justify-end px-4 pt-4">
+        <p className="text-gray-500">work with me ?</p>
       </div>
-      <hr className={styles.hr} />
-      <div>
-        <p>Component with state.</p>
-        <ClickCount />
+      <div className="flex flex-col items-center pb-10">
+        <img
+          className="mb-3 w-24 h-24 rounded-full shadow-lg"
+          src={image}
+          alt="anime"
+        />
+        <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+          Raka Abdi Rmp
+        </h5>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          Front End Dev
+        </span>
+        <div className="flex mt-4 space-x-3 md:mt-6">
+          <Button />
+        </div>
       </div>
-      <hr className={styles.hr} />
-      <div>
-        <p>
-          The button below will throw 2 errors. You'll see the error overlay to
-          let you know about the errors but it won't break the page or reset
-          your state.
-        </p>
-        <Button
-          onClick={(e) => {
-            setTimeout(() => document.parentNode(), 0)
-            throwError()
-          }}
-        >
-          Throw an Error
-        </Button>
-      </div>
-      <hr className={styles.hr} />
-    </main>
-  )
+    </Card>
+  );
 }
 
-export default Home
+export default Home;
